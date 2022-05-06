@@ -1,0 +1,9 @@
+commonAnnotations:
+  note: build for east
+bases:
+- ../../base
+commonLabels:
+  apptype: sample
+images:
+- name: us-docker.pkg.dev/google-samples/containers/gke/hello-app-redis
+  newTag: "1.0"
