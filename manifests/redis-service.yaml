@@ -1,4 +1,3 @@
-
 # Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,12 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 # [START gke_manifests_redis_service_service_redis_cluster]
 apiVersion: v1
 kind: Service
 metadata:
   name: redis-cluster
+  namespace: wehello
 spec:
   clusterIP: None
   ports:
@@ -31,4 +30,3 @@ spec:
   sessionAffinity: None
   type: ClusterIP
 # [END gke_manifests_redis_service_service_redis_cluster]
----

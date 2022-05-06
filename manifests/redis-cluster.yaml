@@ -1,4 +1,3 @@
-
 # Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,14 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 # [START gke_manifests_redis_cluster_statefulset_redis]
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: redis
+  namespace: wehello
 spec:
-  serviceName: "redis-service"
+  serviceName: redis-service
   replicas: 6
   selector:
     matchLabels:
@@ -45,24 +44,24 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
       - name: redis
-        image: "redis"
+        image: redis
         command:
-          - "redis-server"
+        - redis-server
         args:
-          - "/conf/redis.conf"
-          - "--protected-mode"
-          - "no"
+        - /conf/redis.conf
+        - --protected-mode
+        - "no"
         resources:
           requests:
-            cpu: "100m"
-            memory: "100Mi"
+            cpu: 100m
+            memory: 100Mi
         ports:
-            - name: redis
-              containerPort: 6379
-              protocol: "TCP"
-            - name: cluster
-              containerPort: 16379
-              protocol: "TCP"
+        - name: redis
+          containerPort: 6379
+          protocol: TCP
+        - name: cluster
+          containerPort: 16379
+          protocol: TCP
         volumeMounts:
         - name: conf
           mountPath: /conf
@@ -79,9 +78,9 @@ spec:
   - metadata:
       name: data
     spec:
-      accessModes: [ "ReadWriteOnce" ]
+      accessModes:
+      - ReadWriteOnce
       resources:
         requests:
           storage: 1Gi
 # [END gke_manifests_redis_cluster_statefulset_redis]
----
